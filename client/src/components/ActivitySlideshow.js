@@ -52,12 +52,29 @@ const ActivitySlideshow = () => {
         <div className="relative bg-gray-100 rounded-2xl overflow-hidden shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Image */}
-            <div className="relative aspect-video md:aspect-auto md:h-96">
-              <img 
-                src={currentActivity.image} 
-                alt={currentActivity.title}
-                className="w-full h-full object-cover"
-              />
+            <div className="relative aspect-video md:aspect-auto md:h-96 bg-gray-200">
+              {currentActivity.image ? (
+                <img 
+                  src={currentActivity.image} 
+                  alt={currentActivity.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-police-blue/20 to-police-accent/20">
+                  <div className="text-center">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-police-blue/30 rounded-full flex items-center justify-center">
+                      <span className="text-3xl">
+                        {currentActivity.category === 'Operations' && '🚔'}
+                        {currentActivity.category === 'Community' && '🤝'}
+                        {currentActivity.category === 'Training' && '🎓'}
+                        {currentActivity.category === 'Award' && '🏆'}
+                        {!['Operations', 'Community', 'Training', 'Award'].includes(currentActivity.category) && '📋'}
+                      </span>
+                    </div>
+                    <p className="text-police-dark font-semibold">{currentActivity.category}</p>
+                  </div>
+                </div>
+              )}
               <div className="absolute top-4 left-4">
                 <span className="bg-police-accent text-police-dark px-4 py-1 rounded-full text-sm font-semibold">
                   {currentActivity.category}
