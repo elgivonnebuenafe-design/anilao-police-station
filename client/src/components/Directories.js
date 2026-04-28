@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Phone, Mail, Building, Search } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Directories = () => {
   const [directories, setDirectories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +14,7 @@ const Directories = () => {
 
   const fetchDirectories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/directories');
+      const response = await axios.get(`${API_URL}/api/directories`);
       setDirectories(response.data);
     } catch (error) {
       console.error('Error fetching directories:', error);

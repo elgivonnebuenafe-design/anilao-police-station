@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Policies = () => {
   const [policies, setPolicies] = useState([]);
   const [filter, setFilter] = useState('All');
@@ -13,7 +15,7 @@ const Policies = () => {
 
   const fetchPolicies = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/policies');
+      const response = await axios.get(`${API_URL}/api/policies`);
       setPolicies(response.data);
     } catch (error) {
       console.error('Error fetching policies:', error);

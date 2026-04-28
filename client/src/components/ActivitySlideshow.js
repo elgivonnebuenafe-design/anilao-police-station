@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ActivitySlideshow = () => {
   const [activities, setActivities] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +22,7 @@ const ActivitySlideshow = () => {
 
   const fetchActivities = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/activities');
+      const response = await axios.get(`${API_URL}/api/activities`);
       setActivities(response.data);
     } catch (error) {
       console.error('Error fetching activities:', error);

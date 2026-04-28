@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FileText, Download, Eye, Shield, Award, TrendingUp } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Transparency = () => {
   const [documents, setDocuments] = useState([]);
   const [statistics, setStatistics] = useState({});
@@ -12,7 +14,7 @@ const Transparency = () => {
 
   const fetchTransparencyData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/transparency');
+      const response = await axios.get(`${API_URL}/api/transparency`);
       setDocuments(response.data.documents);
       setStatistics(response.data.statistics);
     } catch (error) {

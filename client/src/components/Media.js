@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Video, FileText, Download, Play, Image as ImageIcon } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Media = () => {
   const [activeTab, setActiveTab] = useState('photos');
   const [mediaData, setMediaData] = useState({ photos: [], videos: [], pressReleases: [] });
@@ -12,7 +14,7 @@ const Media = () => {
 
   const fetchMedia = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/media');
+      const response = await axios.get(`${API_URL}/api/media`);
       setMediaData(response.data);
     } catch (error) {
       console.error('Error fetching media:', error);

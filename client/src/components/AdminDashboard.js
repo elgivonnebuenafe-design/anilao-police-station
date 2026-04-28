@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const AdminDashboard = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -32,8 +34,8 @@ const AdminDashboard = ({ onLogout }) => {
   const fetchData = async () => {
     try {
       const [newsRes, activitiesRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/news'),
-        axios.get('http://localhost:5000/api/activities')
+        axios.get(`${API_URL}/api/news`),
+        axios.get(`${API_URL}/api/activities`)
       ]);
       setNews(newsRes.data);
       setActivities(activitiesRes.data);

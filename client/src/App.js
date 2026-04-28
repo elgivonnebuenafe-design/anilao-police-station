@@ -28,9 +28,11 @@ function App() {
     fetchWeatherData();
   }, []);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
   const fetchStationData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/station');
+      const response = await axios.get(`${API_URL}/api/station`);
       setStationData(response.data);
     } catch (error) {
       console.error('Error fetching station data:', error);
@@ -39,7 +41,7 @@ function App() {
 
   const fetchWeatherData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/weather');
+      const response = await axios.get(`${API_URL}/api/weather`);
       setWeatherData(response.data);
     } catch (error) {
       console.error('Error fetching weather data:', error);
