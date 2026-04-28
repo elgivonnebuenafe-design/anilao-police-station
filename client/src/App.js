@@ -19,35 +19,36 @@ import Media from './components/Media';
 import Transparency from './components/Transparency';
 import ActivitySlideshow from './components/ActivitySlideshow';
 
+// API URL from environment variable (set in Vercel dashboard)
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function App() {
   const [stationData, setStationData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
+    const fetchStationData = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/station`);
+        setStationData(response.data);
+      } catch (error) {
+        console.error('Error fetching station data:', error);
+      }
+    };
+
+    const fetchWeatherData = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/weather`);
+        setWeatherData(response.data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
     fetchStationData();
     fetchWeatherData();
   }, []);
-
-  // API URL from environment variable (set in Vercel dashboard)
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-
-  const fetchStationData = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/station`);
-      setStationData(response.data);
-    } catch (error) {
-      console.error('Error fetching station data:', error);
-    }
-  };
-
-  const fetchWeatherData = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/weather`);
-      setWeatherData(response.data);
-    } catch (error) {
-      console.error('Error fetching weather data:', error);
-    }
-  };
 
   return (
     <Router>
