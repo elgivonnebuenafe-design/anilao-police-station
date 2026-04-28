@@ -28,6 +28,7 @@ function App() {
     fetchWeatherData();
   }, []);
 
+  // API URL from environment variable (set in Vercel dashboard)
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   const fetchStationData = async () => {
