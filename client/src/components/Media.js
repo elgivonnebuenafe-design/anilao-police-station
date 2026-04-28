@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Video, FileText, Download, Play, Image as ImageIcon } from 'lucide-react';
+import { Video, FileText, Download, Play, Image as ImageIcon } from 'lucide-react';
 import axios from 'axios';
 
 const Media = () => {

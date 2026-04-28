@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 // Components
@@ -18,7 +18,6 @@ import About from './components/About';
 import Media from './components/Media';
 import Transparency from './components/Transparency';
 import ActivitySlideshow from './components/ActivitySlideshow';
-import BannerSlideshow from './components/BannerSlideshow';
 
 function App() {
   const [stationData, setStationData] = useState(null);

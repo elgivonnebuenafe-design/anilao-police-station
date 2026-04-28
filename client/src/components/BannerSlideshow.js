@@ -29,11 +29,13 @@ const BannerSlideshow = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setIsAnimating(true);
+      setCurrentIndex((prev) => (prev + 1) % banners.length);
+      setTimeout(() => setIsAnimating(false), 800);
     }, 5000); // 5 seconds interval
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [banners.length]);
 
   const nextSlide = () => {
     if (isAnimating) return;
